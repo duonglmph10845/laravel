@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+use App\Models\Category;
+use App\Models\User;
+use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +29,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        
+        Paginator::useBootstrap();
+        view()->composer('*', function($view){
+            $view->with([
+                'category' => Category::all(),
+            ]);
+        });
+          
+        
     }
 }
