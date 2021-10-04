@@ -36,6 +36,6 @@ class SendMail extends Mailable
      */
     public function build()
     {
-       return $this->from('duongmanh.lee@gmail.com', 'DUONGMANHSTORE')->subject('Đơn hàng xác nhận ngày ' . Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s'))->view('mail.mail');
+       return $this->from('duongmanh.lee@gmail.com', 'DUONGMANHSHOP')->subject('Đơn hàng xác nhận ngày ' . Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s'))->view('mailS.mail');
     }
 }

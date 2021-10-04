@@ -18,7 +18,7 @@
         <thead class="table-dark">
             <tr>
                 <td>Id</td>
-                <td>Sản phẩm</td>
+                <td>Image</td>
                 <td>Số điện thoại</td>
                 <td>Địa chỉ</td>
                 <td>
@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $item)
+            @foreach ($invoi_detail as $item)
             <tr>
                 <td>{{ $item->id }}</td>
                 <td><img src="{{ $item->image }}" alt="" width="100px" height="100px"></td>

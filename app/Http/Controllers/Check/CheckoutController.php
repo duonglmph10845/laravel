@@ -30,7 +30,7 @@ class CheckoutController extends Controller
             'user_id' => $id_ckeck,
             'number' => $request->number,
             'address' => $request->address,
-            'total_price' => $request->price,
+            'total_price' => $request->totol_price,
         ])) {
             $invoice_id = $invoice->id;
             foreach ($cart as $item) {
@@ -44,10 +44,7 @@ class CheckoutController extends Controller
                 ]);
             }
             Mail::to($request->email)
-                    ->send(new SendMail($id_ckeck, $request->name, $request->address, $request->phone, $request->email, $request->total_price));
-
-                session()->forget('cart');
-                return redirect()->route('order.success.index');
+                ->send(new SendMail($id_ckeck, $request->name, $request->address, $request->phone, $request->email, $request->total_price));
             session()->forget('cart');
             return redirect()->back()->with('success', 'Đặt hàng thành công');;
         }

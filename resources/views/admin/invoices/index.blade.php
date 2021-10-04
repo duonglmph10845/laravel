@@ -56,7 +56,7 @@
                 <td>{{ $item->total_price }}</td>
                 <td>{{ $item->created_at }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ route('admin.invoices.ct-invoice', [ 'invoice' => $item->user_id ])}}">Chi tiết</a>
+                    <a class="btn btn-primary" href="{{ route('admin.invoices.ct-invoice', [ 'invoice' => $item->id ])}}">Chi tiết</a>
                 </td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.invoices.edit', [ 'invoice' => $item->id ])}}">Update</a>

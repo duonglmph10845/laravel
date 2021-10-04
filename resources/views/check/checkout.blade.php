@@ -239,7 +239,7 @@
                                     <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
                                 </tr>
                             </tfoot>
-                            <input type="text" name="price" value="{{ $total }}" hidden>
+                            <input type="text" name="totol_price" value="{{ $total }}" hidden>
                             
                         </table>
                     </div>

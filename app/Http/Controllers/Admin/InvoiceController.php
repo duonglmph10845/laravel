@@ -34,10 +34,8 @@ class InvoiceController extends Controller
         return redirect()->route('admin.invoices.index');
     }
     public function ct_invoice($id){
-        $invoi_detail = DB::table('invoice_details')->select('invoice_details.id', 'invoice_details.unit_price', 'invoice_details.quantity', 'invoices.address', 'invoices.number', 'invoices.status', 'products.image')->join('invoices', 'invoice_details.invoice_id', '=', 'invoices.id')->join('products', 'invoice_details.product_id', '=', 'products.id')->where('invoices.user_id', $id)->paginate(10);
+        $invoi_detail = DB::table('invoice_details')->select('invoice_details.id', 'invoice_details.unit_price', 'invoice_details.quantity', 'invoices.address', 'invoices.number', 'invoices.status', 'products.image')->join('products', 'invoice_details.product_id', '=', 'products.id')->join('invoices', 'invoice_details.invoice_id', '=', 'invoices.id')->where('invoice_details.invoice_id', $id)->paginate(10);
         // dd($invoi_detail);
-        return view('admin.invoices.ct_invoice', [
-            'data' => $invoi_detail,
-        ]);
+        return view('admin.invoices.ct_invoice', compact("invoi_detail"));
     }
 }
