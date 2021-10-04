@@ -186,7 +186,7 @@
                         </div>
                         <div class="mt-3">
                             <label for="">Email</label>
-                            <input class="form-control" type="text" value="{{ Auth::user()->email }}">
+                            <input class="form-control" type="text" name="email">
                         </div>
                         <div class="mt-3">
                             <label for="">Số điện thoại</label>

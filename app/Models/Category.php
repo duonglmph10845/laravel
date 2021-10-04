@@ -13,8 +13,13 @@ class Category extends Model
     protected $fillable = [
         
         'name',
+        'parent_id'
     ];
     public function products(){
         return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+    public function categoryChildren()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }

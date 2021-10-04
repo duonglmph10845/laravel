@@ -7,6 +7,8 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail; 
 
 class CheckoutController extends Controller
 {
@@ -41,6 +43,11 @@ class CheckoutController extends Controller
                     'quantity' => $quantity,
                 ]);
             }
+            Mail::to($request->email)
+                    ->send(new SendMail($id_ckeck, $request->name, $request->address, $request->phone, $request->email, $request->total_price));
+
+                session()->forget('cart');
+                return redirect()->route('order.success.index');
             session()->forget('cart');
             return redirect()->back()->with('success', 'Đặt hàng thành công');;
         }

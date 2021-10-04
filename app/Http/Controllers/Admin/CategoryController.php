@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\View\Components\Recursive;
 use App\Http\Requests\Admin\Category\StoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -17,9 +18,18 @@ class CategoryController extends Controller
             'data' => $ListCategories,
         ]);
     }
+    public function getCate($parent_id)
+    {
+        $data = Category::all();
+        $recursive = new Recursive($data);
+        $htmlOptions = $recursive->categoryRecursive($parent_id);
+        return $htmlOptions;
+    }
+
     public function create()
     {
-        return view('admin/categories/create');
+        $htmlOptions = $this->getCate($parent_id = '');
+        return view('admin/categories/create', ['htmlOptions' => $htmlOptions]);
     }
     public function store(StoreRequest $requets)
     {
@@ -30,10 +40,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $data = Category::find($id);
-
-        return view('admin/categories/edit', [
-            'data' => $data,
-        ]);
+        $htmlOptions = $this->getCate($data->parent_id);
+        return view('admin/categories/edit', compact('data', 'htmlOptions'));
     }
     public function update($id)
     {
